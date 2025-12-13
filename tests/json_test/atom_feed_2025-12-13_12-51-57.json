@@ -1,0 +1,25 @@
+[
+    {
+        "id": "urn:uuid:1225c695-cfb8-4ebb-aaaa-80da344efa6a",
+        "title": "Atom-Powered Robots Run Amok",
+        "link": "http:\/\/example.org\/2003\/12\/13\/atom03",
+        "content": "Some text.",
+        "enclosure": null,
+        "publishedAt": {
+            "date": "2003-12-13 18:30:02.000000",
+            "timezone_type": 2,
+            "timezone": "Z"
+        },
+        "category": null,
+        "extra": {
+            "updated": "2003-12-13T18:30:02Z",
+            "links": {
+                "alternate": {
+                    "href": "http:\/\/example.org\/2003\/12\/13\/atom03",
+                    "type": "",
+                    "hreflang": ""
+                }
+            }
+        }
+    }
+]

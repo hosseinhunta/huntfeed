@@ -1,0 +1,29 @@
+{
+    "url": "https://example.com/export-test",
+    "title": "Export Test Feed",
+    "items_count": 2,
+    "items": [
+        {
+            "id": "1",
+            "title": "First Article for Export",
+            "link": "https://example.com/1",
+            "content": "This is the content of the first article",
+            "enclosure": null,
+            "publishedAt": "2025-12-13T15:04:43+00:00",
+            "category": "Tech",
+            "extra": [],
+            "fingerprint": "dd3edae1a2cb650059da92bfe5da0b1acbad728d337b955a5be90f9f2495ba3f"
+        },
+        {
+            "id": "2",
+            "title": "Second Article",
+            "link": "https://example.com/2",
+            "content": "Content of second article",
+            "enclosure": null,
+            "publishedAt": "2025-12-12T15:04:43+00:00",
+            "category": "News",
+            "extra": [],
+            "fingerprint": "3dd1f04007c09aaefd7bd5eb400e3b3d3c926d39a9f43103998017d05b44fb41"
+        }
+    ]
+}

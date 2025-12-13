@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Export Test Feed</title>
+    <link>https://example.com/export-test</link>
+    <description>Export Test Feed</description>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 13 Dec 2025 15:04:43 +0000</lastBuildDate>
+    <item>
+      <title>First Article for Export</title>
+      <link>https://example.com/1</link>
+      <description>This is the content of the first article</description>
+      <pubDate>Sat, 13 Dec 2025 15:04:43 +0000</pubDate>
+      <guid>1</guid>
+      <category>Tech</category>
+    </item>
+    <item>
+      <title>Second Article</title>
+      <link>https://example.com/2</link>
+      <description>Content of second article</description>
+      <pubDate>Fri, 12 Dec 2025 15:04:43 +0000</pubDate>
+      <guid>2</guid>
+      <category>News</category>
+    </item>
+  </channel>
+</rss>

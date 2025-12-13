@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://github.com/hosseinhunta/huntfeed/blob/main/README.md
+    about: Check our documentation
+  - name: Discussions
+    url: https://github.com/hosseinhunta/huntfeed/discussions
+    about: Ask questions and discuss ideas
+  - name: WebSub Guide
+    url: https://github.com/hosseinhunta/huntfeed/blob/main/WEBSUB_GUIDE.md
+    about: Learn about WebSub implementation

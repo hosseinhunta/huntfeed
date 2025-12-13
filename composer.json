@@ -1,0 +1,52 @@
+{
+  "name": "hosseinhunta/huntfeed",
+  "description": "Event-driven PHP library for consuming, normalizing, and distributing RSS, Atom, and WebSub (PubSubHubbub) feed updates with real-time push notifications.",
+  "type": "library",
+  "license": "MIT",
+  "homepage": "https://github.com/hosseinhunta/huntfeed",
+  "keywords": [
+    "feed",
+    "rss",
+    "atom",
+    "websub",
+    "pubsubhubbub",
+    "parser",
+    "feed-aggregator",
+    "notification",
+    "event-driven",
+    "push-notifications"
+  ],
+
+  "require": {
+    "php": "^8.1"
+  },
+
+  "autoload": {
+    "psr-4": {
+      "Hosseinhunta\\Huntfeed\\": "src/"
+    }
+  },
+
+  "autoload-dev": {
+    "psr-4": {
+      "Hosseinhunta\\Huntfeed\\Tests\\": "tests/"
+    }
+  },
+
+  "authors": [
+    {
+      "name": "Hossein Mohmmadian",
+      "email": "hosseinhnuta@gmail.com",
+      "role": "Developer"
+    }
+  ],
+
+  "support": {
+    "issues": "https://github.com/hosseinhunta/huntfeed/issues",
+    "source": "https://github.com/hosseinhunta/huntfeed",
+    "docs": "https://github.com/hosseinhunta/huntfeed/blob/main/README.md"
+  },
+
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}

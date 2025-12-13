@@ -1,0 +1,19 @@
+Feed: Export Test Feed
+URL: https://example.com/export-test
+Items: 2
+================================================================================
+
+Title: First Article for Export
+Link: https://example.com/1
+Published: 2025-12-13 15:04:43
+Category: Tech
+Content: This is the content of the first article
+--------------------------------------------------------------------------------
+
+Title: Second Article
+Link: https://example.com/2
+Published: 2025-12-12 15:04:43
+Category: News
+Content: Content of second article
+--------------------------------------------------------------------------------
+

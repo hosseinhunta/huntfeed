@@ -1,0 +1,63 @@
+# Composer
+vendor/
+composer.lock
+composer.phar
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Testing
+.phpunit.result.cache
+coverage/
+.coverage
+
+# Logs
+logs/
+*.log
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Development
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Cache
+.cache/
+*.cache
+
+# Temporary Files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Security
+.htpasswd
+.htaccess.bak
+private/
+secrets/
+
+# Project specific
+metadata.json
+FINAL_SUMMARY.md
+QUICK_SSL_FIX.md
+SSL_CERTIFICATE_FIX.md
+SUMMARY.md
+QUICKSTART_TEST_ENHANCEMENT.md
+QUICKSTART_TEST_WEBSUB_UPDATE.md
+QUICKSTART_TEST_UPDATE_SUMMARY.md

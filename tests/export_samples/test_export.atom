@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Export Test Feed</title>
+  <link href="https://example.com/export-test" />
+  <updated>2025-12-13T15:04:43+00:00</updated>
+  <id>https://example.com/export-test</id>
+  <entry>
+    <title>First Article for Export</title>
+    <link href="https://example.com/1" />
+    <id>1</id>
+    <published>2025-12-13T15:04:43+00:00</published>
+    <updated>2025-12-13T15:04:43+00:00</updated>
+    <summary>This is the content of the first article</summary>
+  </entry>
+  <entry>
+    <title>Second Article</title>
+    <link href="https://example.com/2" />
+    <id>2</id>
+    <published>2025-12-12T15:04:43+00:00</published>
+    <updated>2025-12-12T15:04:43+00:00</updated>
+    <summary>Content of second article</summary>
+  </entry>
+</feed>
