@@ -94,10 +94,24 @@ body {
     flex-direction: column;
 }
 
+<<<<<<< HEAD
 /* Typography Scale */
 h1, .h1 {
     font-size: clamp(3.2rem, 5vw, 4.8rem);
     line-height: 1.2;
+=======
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    color: white;
+    padding: 100px 0;
+    margin-top: -76px;
+}
+
+.hero-section h1 {
+    font-size: 2.5rem;
+    font-size: 3.5rem;
+>>>>>>> f323a2167b968f43739111523b11ec1ce6c6f7bd
     font-weight: 800;
     margin-bottom: var(--spacing-lg);
 }
