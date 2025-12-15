@@ -1,95 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-
-
-
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>PHP RSS Feed Library – Real-Time WebSub & PubSubHubbub | HuntFeed</title>
-
-<meta name="description" content="HuntFeed is a production-ready PHP RSS Feed Library supporting RSS 2.0, Atom, JSON Feed, RDF & GeoRSS with real-time WebSub (PubSubHubbub). 150x faster than polling.">
-
-<meta name="robots" content="index,follow,max-image-preview:large">
-<link rel="canonical" href="https://hosseinhunta.github.io/huntfeed/">
-
-<!-- OpenGraph -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="PHP RSS Feed Library with Real-Time WebSub – HuntFeed">
-<meta property="og:description" content="Modern PHP RSS Feed Library with WebSub, PubSubHubbub & real-time updates. Built as a high-performance SimplePie alternative.">
-<meta property="og:url" content="https://hosseinhunta.github.io/huntfeed/">
-<meta property="og:image" content="huntfeed-openGraph.png">
-<meta property="og:site_name" content="HuntFeed">
-
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="PHP RSS Feed Library – HuntFeed">
-<meta name="twitter:description" content="Real-time RSS & Atom feeds in PHP using WebSub. 99% fewer HTTP requests.">
-<meta name="twitter:image" content="huntfeed-openGraph.png">
-
-<link rel="icon" href="favicon.ico">
-
-<!-- CSS -->
-<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<!-- Schema -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "SoftwareApplication",
-      "name": "HuntFeed",
-      "applicationCategory": "DeveloperApplication",
-      "operatingSystem": "Any",
-      "description": "Production-ready PHP RSS Feed Library with WebSub and PubSubHubbub support",
-      "url": "https://hosseinhunta.github.io/huntfeed/",
-      "author": {
-        "@type": "Person",
-        "name": "Hossein Mohmmadian",
-        "url": "https://github.com/hosseinhunta"
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "How to install HuntFeed?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Use composer: composer require hosseinhunta/huntfeed"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Which PHP version is required?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "PHP 8.1 or higher."
-          }
-        }
-      ]
-    }
-  ]
-}
-</script>
-
-</head>
-
-
-
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
@@ -210,25 +120,11 @@
                     <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
                     <li class="nav-item"><a class="nav-link" href="#installation">Installation</a></li>
                     <li class="nav-item"><a class="nav-link" href="#examples">Examples</a></li>
-
                     <li class="nav-item"><a class="nav-link" href="https://github.com/hosseinhunta/huntfeed/docs/api-docs/">API</a></li>
                     <li class="nav-item"><a class="nav-link" href="https://github.com/hosseinhunta/huntfeed" 
                                            target="_blank" rel="noopener">
                         <i class="fab fa-github me-1"></i>GitHub
                     </a></li>
-
-                    <li class="nav-item"><a class="nav-link" href="#api">API</a></li>
-
-                    <li class="nav-item"><a class="nav-link" href="https://github.com/hosseinhunta/huntfeed"
-                            target="_blank">
-                            <i class="fab fa-github"></i> GitHub
-                        </a></li>
-
-                    <li class="nav-item"><a class="nav-link" href="https://github.com/hosseinhunta/huntfeed" target="_blank">
-                        <i class="fab fa-github"></i> GitHub
-                    </a></li>
-
-
                 </ul>
             </div>
         </div>
@@ -239,23 +135,13 @@
         <div class="container hero-content">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-
                     <h1 class="h1 fw-bold mb-4">
                         PHP RSS Feed Library<br>
                         <span class="text-gradient">with Real-Time WebSub</span>
                     </h1>
-
-
-                    <h1 class="display-4 fw-bold mb-4">PHP RSS Feed Library with Real-Time WebSub Support</h1>
-                    <p class="lead mb-4">Production-ready PHP library for real-time RSS/Atom feed management. Get
-                        updates in under 1 second with WebSub.</p>
-
-                    <h1 class="display-4 fw-bold mb-4">Real-Time Feed Management for PHP</h1>
-
                     <p class="lead mb-4">
                         Production-ready PHP library for real-time RSS/Atom feed management. Get updates in under 1 second with WebSub push notifications.
                     </p>
-
                     
                     <div class="cta-buttons">
                         <a href="#installation" class="btn btn-primary">
@@ -270,29 +156,6 @@
                     
                     <div class="benefits-grid mt-5">
                         <div class="benefit-item">
-
-
-                    <div class="d-flex gap-3">
-                        <a href="#installation" class="btn btn-primary btn-lg">
-                            <i class="fas fa-rocket"></i> Get Started
-                        </a>
-
-                        <a href="https://github.com/hosseinhunta/huntfeed" class="btn btn-outline-light btn-lg"
-                            target="_blank">
-                            <i class="fab fa-github"></i> View on GitHub
-                        </a>
-                    </div>
-
-
-                        <a href="https://github.com/hosseinhunta/huntfeed" class="btn btn-outline-light btn-lg" target="_blank">
-                            <i class="fab fa-github"></i> View on GitHub
-                        </a>
-                    </div>
-                    
-
-                    <div class="mt-5">
-                        <div class="d-flex align-items-center mb-2">
-
                             <i class="fas fa-check-circle text-success me-2"></i>
                             <span>99% fewer HTTP requests with WebSub</span>
                         </div>
@@ -351,7 +214,6 @@ php artisan huntfeed:listen</code></pre>
     <!-- Features Section -->
     <section id="features" class="py-5" aria-label="Key features">
         <div class="container">
-
             <div class="text-center mb-5">
                 <h2 class="h2">Why HuntFeed?</h2>
                 <p class="section-subtitle">Modern feed management for PHP developers</p>
@@ -361,73 +223,22 @@ php artisan huntfeed:listen</code></pre>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-bolt"></i>
-
-
-            <h2 class="text-center mb-5">Why HuntFeed Is a Modern SimplePie Alternative</h2>
-
-            <h2 class="text-center mb-5">Why HuntFeed?</h2>
-
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-bolt"></i>
-                        </div>
-
-                        <h3>Real-Time RSS with WebSub</h3>
-                        <p>WebSub (PubSubHubbub) support for push notifications. Get updates instantly instead of
-                            polling.</p>
-
-                        <h3>Real-Time Updates</h3>
-                        <p>WebSub (PubSubHubbub) support for push notifications. Get updates instantly instead of polling.</p>
-
-
                     </div>
                     <h3>Real-Time Updates</h3>
                     <p>WebSub (PubSubHubbub) support for push notifications. Get updates instantly instead of inefficient polling.</p>
                 </div>
-
                 
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-tachometer-alt"></i>
-
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-
-                        <h3>Production-Grade Security</h3>
-                        <p>HMAC-SHA1 verification, SSL enforcement, duplicate detection, and comprehensive error
-                            handling.</p>
-
-                        <h3>Production Ready</h3>
-                        <p>HMAC-SHA1 verification, SSL enforcement, duplicate detection, and comprehensive error handling.</p>
-
-
                     </div>
                     <h3>High Performance</h3>
                     <p>99% fewer HTTP requests, 98% bandwidth reduction, 150x faster updates than traditional polling.</p>
                 </div>
-
                 
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-exchange-alt"></i>
-
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-exchange-alt"></i>
-                        </div>
-
-                        <h3>Multi-Format Feed Parsing</h3>
-
-                        <h3>Multi-Format Support</h3>
-
-                        <p>Parse RSS 2.0, Atom 1.0, JSON Feed, RDF, GeoRSS. Export to 7 different formats.</p>
-
                     </div>
                     <h3>Multi-Format Support</h3>
                     <p>Parse RSS 2.0, Atom 1.0, JSON Feed, RDF, GeoRSS. Export to 7 different formats.</p>
@@ -440,24 +251,10 @@ php artisan huntfeed:listen</code></pre>
                     <h3>Production Ready</h3>
                     <p>HMAC-SHA1 verification, SSL enforcement, duplicate detection, and comprehensive error handling.</p>
                 </div>
-
                 
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-search"></i>
-
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-
-                        <h3>High-Performance Architecture</h3>
-
-                        <h3>High Performance</h3>
-
-                        <p>99% fewer HTTP requests, 98% bandwidth reduction, 150x faster updates than polling.</p>
-
                     </div>
                     <h3>Smart Detection</h3>
                     <p>Auto-detect feed formats, duplicate prevention with 3 fingerprinting strategies.</p>
@@ -477,19 +274,11 @@ php artisan huntfeed:listen</code></pre>
     <!-- Installation Section -->
     <section id="installation" class="py-5 bg-light" aria-label="Installation instructions">
         <div class="container">
-
             <div class="text-center mb-5">
                 <h2 class="h2">Get Started in Minutes</h2>
                 <p class="section-subtitle">Installation is simple with Composer</p>
             </div>
             
-
-
-            <h2 class="text-center mb-5">Installation & Usage</h2>
-
-            <h2 class="text-center mb-5">Quick Installation</h2>
-
-
             <div class="row">
                 <div class="col-lg-6 mb-5 mb-lg-0">
                     <div class="code-display">
@@ -501,22 +290,12 @@ php artisan huntfeed:listen</code></pre>
                             <pre><code class="language-bash">composer require hosseinhunta/huntfeed</code></pre>
                         </div>
                     </div>
-
                     
                     <div class="mt-4">
                         <h3 class="h4 mb-3">Basic Usage</h3>
                         <div class="code-display">
                             <div class="code-body">
                                 <pre><code class="language-php" style="height: 50ch;"><?php
-
-
-
-
-                    
-
-                    <h3 class="mt-4">Basic Usage</h3>
-                    <pre><code class="language-php">&lt;?php
-
 require 'vendor/autoload.php';
 
 use Hosseinhunta\Huntfeed\Hub\FeedManager;
@@ -533,7 +312,6 @@ echo $manager->export('json');</code></pre>
                         </div>
                     </div>
                 </div>
-
                 
                 <div class="col-lg-6">
                     <h3 class="h4 mb-3">Requirements</h3>
@@ -579,45 +357,6 @@ echo $manager->export('json');</code></pre>
                                 <div class="chart-bar">
                                     <div class="chart-fill" data-value="99%" style="width: 0%;"></div>
                                 </div>
-
-
-
-
-                
-
-                <div class="col-lg-6">
-                    <h3>Requirements</h3>
-                    <ul class="list-group mb-4">
-                        <li class="list-group-item">
-                            <i class="fas fa-check text-success me-2"></i>
-                            PHP 8.1 or higher
-                        </li>
-                        <li class="list-group-item">
-                            <i class="fas fa-check text-success me-2"></i>
-                            cURL extension
-                        </li>
-                        <li class="list-group-item">
-                            <i class="fas fa-check text-success me-2"></i>
-                            SimpleXML extension
-                        </li>
-                        <li class="list-group-item">
-                            <i class="fas fa-check text-success me-2"></i>
-                            JSON extension
-                        </li>
-                    </ul>
-
-
-
-                    
-
-                    <h3>Performance Benefits</h3>
-                    <div class="performance-chart">
-                        <div class="performance-item">
-                            <div class="performance-label">HTTP Requests</div>
-                            <div class="progress" style="height: 25px;">
-                                <div class="progress-bar bg-danger" style="width: 100%">9,600/day (Polling)</div>
-                                <div class="progress-bar bg-success" style="width: 1%">~100/day (WebSub)</div>
-
                             </div>
                             <div class="chart-item">
                                 <div class="chart-label">
@@ -647,7 +386,6 @@ echo $manager->export('json');</code></pre>
     <!-- Examples Section -->
     <section id="examples" class="py-5" aria-label="Usage examples">
         <div class="container">
-
             <div class="text-center mb-5">
                 <h2 class="h2">Use Cases & Examples</h2>
                 <p class="section-subtitle">Integrate HuntFeed into your applications</p>
@@ -674,62 +412,6 @@ echo $manager->export('json');</code></pre>
                         <div class="code-display">
                             <div class="code-body">
                                 <pre><code class="language-php"><?php
-
-
-            <h2 class="text-center mb-5">Use Cases</h2>
-
-
-            <h2 class="text-center mb-5">Use Cases & Examples</h2>
-            
-
-            <div class="example-tabs">
-                <ul class="nav nav-tabs" id="exampleTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#telegram">
-
-                            <i class="fab fa-telegram"></i> <h3>Telegram Bots</h3>
-
-                            <i class="fab fa-telegram"></i> Telegram Bot
-
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#api">
-
-                            <i class="fas fa-code"></i> <h3>APIs & Dashboards</h3>
-
-                            <i class="fas fa-code"></i> REST API
-
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#websub">
-
-                            <i class="fas fa-bell"></i> <h3>News Aggregators</h3>
-
-                            <i class="fas fa-bell"></i> WebSub
-
-                        </button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#database">
-
-                            <i class="fas fa-database"></i> <h3>Database</h3>
-                        </button>
-                    </li>
-                </ul>
-
-
-                            <i class="fas fa-database"></i> Database
-                        </button>
-                    </li>
-                </ul>
-                
-
-                <div class="tab-content p-4 border border-top-0 rounded-bottom">
-                    <div class="tab-pane fade show active" id="telegram">
-                        <pre><code class="language-php">&lt;?php
-
 // Telegram Bot Integration
 $manager->on('item:new', function($data) {
     $item = $data['item'];
@@ -745,21 +427,11 @@ $manager->on('item:new', function($data) {
                             </div>
                         </div>
                     </div>
-
                     
                     <div class="tab-pane" id="api" role="tabpanel" aria-labelledby="api-tab">
                         <div class="code-display">
                             <div class="code-body">
                                 <pre><code class="language-php"><?php
-
-
-
-
-                    
-
-                    <div class="tab-pane fade" id="api">
-                        <pre><code class="language-php">&lt;?php
-
 // REST API Endpoint
 $app->get('/api/feeds', function() use ($manager) {
     header('Content-Type: application/json');
@@ -773,21 +445,11 @@ $app->get('/api/feeds/{id}/rss', function($id) use ($manager) {
                             </div>
                         </div>
                     </div>
-
                     
                     <div class="tab-pane" id="websub" role="tabpanel" aria-labelledby="websub-tab">
                         <div class="code-display">
                             <div class="code-body">
                                 <pre><code class="language-php"><?php
-
-
-
-
-                    
-
-                    <div class="tab-pane fade" id="websub">
-                        <pre><code class="language-php">&lt;?php
-
 // WebSub Setup
 use Hosseinhunta\Huntfeed\WebSub\WebSubManager;
 
@@ -804,21 +466,11 @@ $webSubManager->registerFeedWithWebSub(
                             </div>
                         </div>
                     </div>
-
                     
                     <div class="tab-pane" id="database" role="tabpanel" aria-labelledby="database-tab">
                         <div class="code-display">
                             <div class="code-body">
                                 <pre><code class="language-php"><?php
-
-
-
-
-                    
-
-                    <div class="tab-pane fade" id="database">
-                        <pre><code class="language-php">&lt;?php
-
 // Database Integration
 $items = $manager->getAllItems();
 
@@ -843,7 +495,6 @@ foreach ($items as $item) {
     <!-- API Section -->
     <section id="api" class="py-5 bg-light" aria-label="API reference">
         <div class="container">
-
             <div class="text-center mb-5">
                 <h2 class="h2">API Reference</h2>
                 <p class="section-subtitle">Clean, intuitive API for developers</p>
@@ -912,72 +563,6 @@ foreach ($items as $item) {
                 </div>
             </div>
             
-
-            <h2 class="text-center mb-5">API Reference</h2>
-
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="api-card">
-                        <h3><code>FeedManager Methods</code></h3>
-
-            
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="api-card">
-                        <h3><code>FeedManager</code></h3>
-
-                        <ul class="api-methods">
-                            <li><code>registerFeed($id, $url, $options)</code> - Register a feed</li>
-                            <li><code>registerFeeds($array)</code> - Register multiple feeds</li>
-                            <li><code>checkUpdates()</code> - Check for new items</li>
-                            <li><code>export($format, $feedId = null)</code> - Export feeds</li>
-                            <li><code>on($event, $callback)</code> - Event handler</li>
-                            <li><code>getLatestItems($limit)</code> - Get latest items</li>
-                            <li><code>searchItems($query)</code> - Search across feeds</li>
-                        </ul>
-                    </div>
-                </div>
-
-
-                <div class="col-md-6">
-                    <div class="api-card">
-                        <h3><code>WebSubManager Methods</code></h3>
-
-                
-                <div class="col-md-6">
-                    <div class="api-card">
-                        <h3><code>WebSubManager</code></h3>
-
-                        <ul class="api-methods">
-                            <li><code>registerFeedWithWebSub($id, $url)</code> - Register with WebSub</li>
-                            <li><code>setAutoSubscribe($bool)</code> - Auto-subscribe to hubs</li>
-                            <li><code>setFallbackToPolling($bool)</code> - Polling fallback</li>
-                            <li><code>getSubscriptionStatus()</code> - Check subscriptions</li>
-                        </ul>
-                    </div>
-
-
-
-                    
-
-                    <div class="api-card">
-                        <h3>Events</h3>
-                        <ul class="api-methods">
-                            <li><code>feed:registered</code> - Feed registered</li>
-                            <li><code>feed:updated</code> - Feed updated</li>
-                            <li><code>item:new</code> - New item found</li>
-                            <li><code>item:duplicate</code> - Duplicate detected</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-
-
-            
-
-
             <div class="text-center mt-4">
                 <a href="api-docs/" class="btn btn-outline-primary">
                     <i class="fas fa-book me-2"></i>Full API Documentation
@@ -1087,7 +672,6 @@ foreach ($items as $item) {
                         <li><a href="docs/troubleshooting.html">Troubleshooting</a></li>
                     </ul>
                 </div>
-
                 
                 <div>
                     <h5 class="footer-heading">Resources</h5>
@@ -1095,23 +679,6 @@ foreach ($items as $item) {
                         <li><a href="https://github.com/hosseinhunta/huntfeed/issues">Issue Tracker</a></li>
                         <li><a href="https://github.com/hosseinhunta/huntfeed/discussions">Discussions</a></li>
                         <li><a href="https://packagist.org/packages/hosseinhunta/huntfeed">Packagist</a></li>
-
-                <div class="col-md-3">
-                    <h5>Resources</h5>
-                    <ul class="list-unstyled">
-
-                        <li><a href="https://github.com/hosseinhunta/huntfeed/issues" class="text-white-50">Issue
-                                Tracker</a></li>
-                        <li><a href="https://github.com/hosseinhunta/huntfeed/discussions"
-                                class="text-white-50">Discussions</a></li>
-                        <li><a href="https://packagist.org/packages/hosseinhunta/huntfeed"
-                                class="text-white-50">Packagist</a></li>
-
-                        <li><a href="https://github.com/hosseinhunta/huntfeed/issues" class="text-white-50">Issue Tracker</a></li>
-                        <li><a href="https://github.com/hosseinhunta/huntfeed/discussions" class="text-white-50">Discussions</a></li>
-                        <li><a href="https://packagist.org/packages/hosseinhunta/huntfeed" class="text-white-50">Packagist</a></li>
-
-
                     </ul>
                 </div>
                 
@@ -1125,19 +692,10 @@ foreach ($items as $item) {
             <hr class="my-5">
             
             <div class="text-center">
-
                 <p class="mb-0 text-muted">
                     &copy; 2025 HuntFeed. Created with <i class="fas fa-heart text-danger mx-1"></i> by 
                     <a href="https://github.com/hosseinhunta" class="text-reset">Hossein Mohmmadian</a>.
                 </p>
-
-
-                <p>&copy; 2024 HuntFeed. Created by <a href="https://github.com/hosseinhunta" class="text-white">Hossein
-                        Mohmmadian</a>. MIT License.</p>
-
-                <p>&copy; 2024 HuntFeed. Created by <a href="https://github.com/hosseinhunta" class="text-white">Hossein Mohmmadian</a>. MIT License.</p>
-
-
             </div>
         </div>
     </footer>
@@ -1145,7 +703,6 @@ foreach ($items as $item) {
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-
     <script>
         // Initialize syntax highlighting
         hljs.highlightAll();
@@ -1172,37 +729,7 @@ foreach ($items as $item) {
                 });
             });
         });
-
-    <script>hljs.highlightAll();</script>
-
-    <script src="js/main.js" async></script>
-
-
-    <script src="js/main.js"></script>
-    
-
-    <!-- Analytics (Optional) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() { dataLayer.push(arguments); }
-
-        function gtag(){dataLayer.push(arguments);}
-
-        gtag('js', new Date());
-        gtag('config', 'G-XXXXXXX');
-
     </script>
     <script src="js/main.js"></script>
 </body>
-
 </html>
-
-
-
-</html>
-
-</html>
-
-
