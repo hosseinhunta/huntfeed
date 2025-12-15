@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>WebSub Guide - HuntFeed PHP Library</title>
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="Complete WebSub (PubSubHubbub) implementation guide for HuntFeed PHP RSS/Atom feed library">
+    <meta name="keywords" content="WebSub, PubSubHubbub, PHP real-time feed updates, push notifications, feed subscriptions">
+    <meta name="author" content="Hossein Mohmmadian">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="WebSub Guide - HuntFeed PHP Library">
+    <meta property="og:description" content="Complete WebSub (PubSubHubbub) implementation guide for HuntFeed PHP RSS/Atom feed library">
+    <meta property="og:url" content="https://hosseinhunta.github.io/huntfeed/websub.html">
+    <meta property="og:image" content="https://hosseinhunta.github.io/huntfeed/images/huntfeed-openGraph.png">
+    
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/styles/github-dark.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        .workflow-step {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            margin-bottom: var(--spacing-lg);
+            border: 2px solid var(--color-surface-alt);
+            position: relative;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: var(--color-primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .architecture-diagram {
+            background: var(--color-surface-dark);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-xl);
+            margin: var(--spacing-xl) 0;
+            overflow-x: auto;
+        }
+        
+        .comparison-table {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin: var(--spacing-xl) 0;
+        }
+        
+        .comparison-table th {
+            background: var(--color-surface-alt);
+            padding: var(--spacing-md);
+            text-align: center;
+        }
+        
+        .comparison-table td {
+            padding: var(--spacing-md);
+            border: 1px solid var(--color-surface-alt);
+        }
+        
+        .comparison-table .better {
+            background: rgba(39, 174, 96, 0.1);
+            color: var(--color-success);
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: var(--spacing-md);
+            padding: var(--spacing-md);
+            background: var(--color-surface-alt);
+            border-radius: var(--radius-md);
+        }
+        
+        .checklist-item input[type="checkbox"] {
+            margin-right: var(--spacing-md);
+            margin-top: 0.3rem;
+        }
+        nav#toc ul li a.nav-link {
+            color: black;
+        }
+        nav#toc ul li a.nav-link:hover {
+            color: #00541d;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-rss-square me-2"></i>HuntFeed
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="getting-started.html">Getting Started</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="websub.html">WebSub Guide</a></li>
+                    <li class="nav-item"><a class="nav-link" href="api-reference.html">API Reference</a></li>
+                    <li class="nav-item"><a class="nav-link" href="examples.html">Examples</a></li>
+                    <li class="nav-item"><a class="nav-link" href="troubleshooting.html">Troubleshooting</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://github.com/hosseinhunta/huntfeed" 
+                                           target="_blank" rel="noopener">
+                        <i class="fab fa-github me-1"></i>GitHub
+                    </a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" aria-label="WebSub Guide">
+        <div class="container hero-content">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="h1 fw-bold mb-4">
+                        Complete <span class="text-gradient">WebSub</span> Guide
+                    </h1>
+                    <p class="lead mb-4">
+                        Implement real-time push notifications for RSS/Atom feeds using the WebSub (PubSubHubbub) protocol with HuntFeed.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container py-5" style="margin-top: 100px;">
+        <div class="row">
+            <div class="col-lg-3 d-none d-lg-block">
+                <div class="sticky-top" style="top: 120px;">
+                    <nav id="toc" class="toc-nav">
+                        <h6 class="text-uppercase fw-bold mb-3">Contents</h6>
+                        <ul class="nav flex-column">
+                            <li class="nav-item"><a class="nav-link" href="#what-is-websub">What is WebSub?</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#architecture">Architecture</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#workflow">Workflow</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#implementation">Implementation</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#security">Security</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#performance">Performance</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#troubleshooting">Troubleshooting</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#checklist">Checklist</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            
+            <div class="col-lg-9">
+                <!-- What is WebSub? -->
+                <section id="what-is-websub" class="mb-5">
+                    <h2 class="h2 mb-4">
+                        <i class="fas fa-rocket me-2"></i>What is WebSub?
+                    </h2>
+                    
+                    <p>WebSub (previously known as PubSubHubbub) is an open standard for:</p>
+                    <ul>
+                        <li><strong>Push-based distribution</strong> of content changes</li>
+                        <li><strong>Hub-mediated</strong> publication workflows</li>
+                        <li><strong>Real-time notifications</strong> instead of polling</li>
+                    </ul>
+                    
+                    <div class="alert alert-primary mt-4">
+                        <h5 class="alert-heading">
+                            <i class="fas fa-bolt me-2"></i>Benefits for HuntFeed
+                        </h5>
+                        <ul class="mb-0">
+                            <li><strong>Real-time updates</strong> - Get news immediately when published</li>
+                            <li><strong>Reduced bandwidth</strong> - No empty polling requests</li>
+                            <li><strong>Lower latency</strong> - Instant notification delivery</li>
+                            <li><strong>Better UX</strong> - Users see content faster</li>
+                            <li><strong>Scalable</strong> - Hub handles distribution to many subscribers</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <!-- Architecture -->
+                <section id="architecture" class="mb-5">
+                    <h2 class="h2 mb-4">
+                        <i class="fas fa-sitemap me-2"></i>Architecture
+                    </h2>
+                    
+                    <div class="architecture-diagram">
+                        <pre style="color: #e1e1e1; font-family: var(--font-mono); margin: 0;">
+┌─────────────────────────────────────────────────────┐
+│                  WebSub System                      │
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│  WebSubSubscriber                                   │
+│  ├─ subscribe()                                     │
+│  ├─ unsubscribe()                                   │
+│  ├─ verifyChallenge()                               │
+│  ├─ handleNotification()                            │
+│  └─ detectHubFromFeed()                             │
+│                                                     │
+│  WebSubManager (Orchestration)                      │
+│  ├─ registerFeedWithWebSub()                        │
+│  ├─ registerMultipleFeeds()                         │
+│  ├─ getSubscriptionStatus()                         │
+│  └─ handleWebSubNotification()                      │
+│                                                     │
+│  WebSubHandler (HTTP Endpoint)                      │
+│  ├─ GET (verification challenge)                    │
+│  └─ POST (push notification)                        │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+                        </pre>
+                    </div>
+                    
+                    <h3 class="h4 mt-4 mb-3">Components</h3>
+                    
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-user-check me-2"></i>WebSubSubscriber
+                                    </h5>
+                                    <p class="card-text">Core subscription management, handles hub communication, subscription lifecycle.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-cogs me-2"></i>WebSubManager
+                                    </h5>
+                                    <p class="card-text">Orchestration layer, manages multiple subscriptions, handles notification distribution.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-exchange-alt me-2"></i>WebSubHandler
+                                    </h5>
+                                    <p class="card-text">HTTP endpoint handling, verification challenges, notification reception.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Workflow -->
+                <section id="workflow" class="mb-5">
+                    <h2 class="h2 mb-4">
+                        <i class="fas fa-project-diagram me-2"></i>Workflow
+                    </h2>
+                    
+                    <div class="workflow-step">
+                        <div class="step-number">1</div>
+                        <h3 class="h4">Discovery</h3>
+                        <p>Your app fetches the feed and discovers the WebSub hub:</p>
+                        <div class="code-display">
+                            <div class="code-body">
+                                <pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;feed xmlns=&quot;http://www.w3.org/2005/Atom&quot;&gt;
+    &lt;title&gt;Example Feed&lt;/title&gt;
+    &lt;link rel=&quot;hub&quot; href=&quot;https://hub.example.com/&quot; /&gt;
+    &lt;link rel=&quot;self&quot; href=&quot;https://example.com/feed.xml&quot; /&gt;
+    ...
+&lt;/feed&gt;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="step-number">2</div>
+                        <h3 class="h4">Subscription</h3>
+                        <p>Your app subscribes to the hub:</p>
+                        <div class="code-display">
+                            <div class="code-body">
+                                <pre><code class="language-bash">POST /hub HTTP/1.1
+Host: hub.example.com
+
+hub.callback=https://your-domain.com/websub-callback.php
+hub.mode=subscribe
+hub.topic=https://example.com/feed.xml
+hub.lease_seconds=86400
+hub.secret=your_secret_key</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="step-number">3</div>
+                        <h3 class="h4">Verification</h3>
+                        <p>Hub verifies your callback endpoint:</p>
+                        <div class="code-display">
+                            <div class="code-body">
+                                <pre><code class="language-bash">GET /websub-callback.php?hub.mode=subscribe&
+hub.topic=https://example.com/feed.xml&
+hub.challenge=random_challenge_string&
+hub.lease_seconds=86400</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="step-number">4</div>
+                        <h3 class="h4">Notification</h3>
+                        <p>Hub pushes updates when feed changes:</p>
+                        <div class="code-display">
+                            <div class="code-body">
+                                <pre><code class="language-bash">POST /websub-callback.php HTTP/1.1
+Host: your-domain.com
+Content-Type: application/atom+xml
+X-Hub-Signature: sha1=hmac_signature
+
+&lt;feed&gt;...updated feed content...&lt;/feed&gt;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Implementation -->
+                <section id="implementation" class="mb-5">
+                    <h2 class="h2 mb-4">
+                        <i class="fas fa-code me-2"></i>Implementation Guide
+                    </h2>
+                    
+                    <h3 class="h4 mb-3">Basic Setup</h3>
+                    <div class="code-display">
+                        <div class="code-body">
+                            <pre><code class="language-php">use Hosseinhunta\Huntfeed\Hub\FeedManager;
+use Hosseinhunta\Huntfeed\WebSub\WebSubManager;
+
+// Initialize
+$feedManager = new FeedManager();
+$callbackUrl = 'https://your-domain.com/websub-callback.php';
+
+$webSubManager = new WebSubManager($feedManager, $callbackUrl);
+
+// Configure
+$webSubManager
+    ->setAutoSubscribe(true)           // Auto-subscribe to hubs
+    ->setFallbackToPolling(true)       // Fallback if no hub
+    ->setLeaseSeconds(86400);          // 24-hour subscription</code></pre>
+                        </div>
+                    </div>
+                    
+                    <h3 class="h4 mt-4 mb-3">Callback Endpoint</h3>
+                    <p>Create <code>websub-callback.php</code>:</p>
+                    <div class="code-display">
+                        <div class="code-body">
+                            <pre><code class="language-php">use Hosseinhunta\Huntfeed\Hub\FeedManager;
+use Hosseinhunta\Huntfeed\WebSub\WebSubManager;
+use Hosseinhunta\Huntfeed\WebSub\WebSubHandler;
+
+// Setup
+$feedManager = new FeedManager();
+$callbackUrl = 'https://your-domain.com/websub-callback.php';
+$webSubManager = new WebSubManager($feedManager, $callbackUrl);
+$handler = $webSubManager->getHandler();
+
+// Get request data
+$method = $_SERVER['REQUEST_METHOD'];
+$body = file_get_contents('php://input');
+$headers = getallheaders();
+
+// Process request
+$result = $handler->processRequest($method, $_GET, $body, $headers);
+
+// Handle verification
+if ($method === 'GET') {
+    http_response_code($result['status'] ?? 200);
+    echo $result['challenge'] ?? '';
+    exit;
+}
+
+// Handle notification
+if ($method === 'POST') {
+    $notification = $webSubManager->handleWebSubNotification(
+        $body,
+        $headers,
+        function($items) {
+            foreach ($items as $item) {
+                // Process each item
+                processNewItem($item);
+            }
+        }
+    );
+    
+    http_response_code($notification['success'] ? 204 : 400);
+    exit;
+}</code></pre>
+                        </div>
+                    </div>
+                    
+                    <h3 class="h4 mt-4 mb-3">Hub Detection</h3>
+                    <p>HuntFeed automatically detects hubs in feeds:</p>
+                    <div class="code-display">
+                        <div class="code-body">
+                            <pre><code class="language-php">$hubUrl = WebSubSubscriber::detectHubFromFeed($feedContent);
+
+if ($hubUrl) {
+    echo "WebSub hub found: $hubUrl";
+    // Subscribe to this hub
+} else {
+    echo "No WebSub hub found, falling back to polling";
+    // Fallback to polling
+}</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Security -->
+                <section id="security" class="mb-5">
+                    <h2 class="h2 mb-4">
+                        <i class="fas fa-shield-alt me-2"></i>Security Considerations
+                    </h2>
+                    
+                    <h3 class="h4 mb-3">Signature Verification</h3>
+                    <p>HuntFeed automatically verifies HMAC-SHA1 signatures:</p>
+                    <div class="code-display">
+                        <div class="code-body">
+                            <pre><code class="language-php">// HuntFeed automatically handles this internally:
+// Calculate HMAC-SHA1 of body with secret:
+$expectedSignature = hash_hmac('sha1', $body, $secret);
+$requestSignature = $headers['X-Hub-Signature'];
+
+if (!hash_equals($expectedSignature, $requestSignature)) {
+    // Reject notification
+    http_response_code(403);
+    exit;
+}</code></pre>
+                        </div>
+                    </div>
+                    
+                    <h3 class="h4 mt-4 mb-3">Best Practices</h3>
+                    <ul>
+                        <li>✅ <strong>Always use HTTPS</strong> in production</li>
+                        <li>✅ <strong>Validate signatures</strong> for each notification</li>
+                        <li>✅ <strong>Use strong secrets</strong> (32-byte random strings)</li>
+                        <li>✅ <strong>Store secrets securely</strong> (environment variables)</li>
+                        <li>✅ <strong>Implement rate limiting</strong> on callback endpoint</li>
+                        <li>✅ <strong>Log all subscription activities</strong> for auditing</li>
+                        <li>✅ <strong>Monitor hub availability</strong> and health</li>
+                    </ul>
+                </section>
+
+                <!-- Performance -->
+                <section id="performance" class="mb-5">
+                    <h2 class="h2 mb-4">
+                        <i class="fas fa-tachometer-alt me-2"></i>Performance Comparison
+                    </h2>
+                    
+                    <div class="comparison-table">
+                        <table class="table table-borderless mb-0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Metric</th>
+                                    <th scope="col">Traditional Polling</th>
+                                    <th scope="col">WebSub with HuntFeed</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Requests (no updates)</strong></td>
+                                    <td>∞ (every poll interval)</td>
+                                    <td class="better">0 (push only)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Update Latency</strong></td>
+                                    <td>Minutes to hours</td>
+                                    <td class="better">&lt; 1 second</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Bandwidth Usage</strong></td>
+                                    <td>High (full feed transfers)</td>
+                                    <td class="better">Very Low (push notifications)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Server Load</strong></td>
+                                    <td>High (continuous polling)</td>
+                                    <td class="better">Low (event-driven)</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Real-time Updates</strong></td>
+                                    <td>❌ No</td>
+                                    <td class="better">✅ Yes</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Scaling</strong></td>
+                                    <td>Difficult</td>
+                                    <td class="better">Easy</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <h3 class="h4 mt-4 mb-3">Optimization Tips</h3>
+                    <ol>
+                        <li><strong>Cache subscriptions</strong> - Store in database to survive restarts</li>
+                        <li><strong>Queue processing</strong> - Use background jobs for notifications</li>
+                        <li><strong>Batch inserts</strong> - Insert items in batches, not individually</li>
+                        <li><strong>Index smartly</strong> - Pre-index common search fields</li>
+                        <li><strong>Monitor health</strong> - Track subscription renewals and failures</li>
+                    </ol>
+                </section>
+
+                <!-- Troubleshooting -->
+                <section id="troubleshooting" class="mb-5">
+                    <h2 class="h2 mb-4">
+                        <i class="fas fa-wrench me-2"></i>Troubleshooting
+                    </h2>
+                    
+                    <div class="alert alert-warning">
+                        <h5 class="alert-heading">
+                            <i class="fas fa-exclamation-triangle me-2"></i>Common Issues
+                        </h5>
+                    </div>
+                    
+                    <h4 class="h5 mt-3">"No WebSub Hub Found"</h4>
+                    <ul>
+                        <li>Check feed contains <code>&lt;link rel="hub" /&gt;</code></li>
+                        <li>Verify hub URL is valid and accessible</li>
+                        <li>Some feeds don't have hubs - fallback to polling works fine</li>
+                    </ul>
+                    
+                    <h4 class="h5 mt-3">"Subscription Verification Failed"</h4>
+                    <ul>
+                        <li>Ensure callback URL is publicly accessible</li>
+                        <li>Check firewall allows incoming requests</li>
+                        <li>Verify HTTP method (should be GET for verification)</li>
+                        <li>Return HTTP 200 with challenge in body</li>
+                    </ul>
+                    
+                    <h4 class="h5 mt-3">"Notification Not Received"</h4>
+                    <ul>
+                        <li>Verify subscription was verified</li>
+                        <li>Check callback URL in subscription request</li>
+                        <li>Ensure endpoint returns HTTP 204</li>
+                        <li>Monitor server logs for incoming requests</li>
+                    </ul>
+                    
+                    <h4 class="h5 mt-3">"Signature Verification Failed"</h4>
+                    <ul>
+                        <li>Confirm secret matches subscription request</li>
+                        <li>Check HMAC algorithm (should be sha1)</li>
+                        <li>Verify header format: <code>sha1=&lt;signature&gt;</code></li>
+                        <li>Ensure hub sends X-Hub-Signature header</li>
+                    </ul>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" aria-label="Site footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4 class="footer-brand">
+                        <i class="fas fa-rss-square me-2"></i>HuntFeed
+                    </h4>
+                    <p class="text-muted">Production-ready PHP feed management library with WebSub support for real-time updates.</p>
+                    <div class="social-links">
+                        <a href="https://github.com/hosseinhunta/huntfeed" class="social-link" 
+                           target="_blank" rel="noopener" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://packagist.org/packages/hosseinhunta/huntfeed" class="social-link" 
+                           target="_blank" rel="noopener" aria-label="Packagist">
+                            <i class="fab fa-php"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h5 class="footer-heading">Documentation</h5>
+                    <ul class="footer-links">
+                        <li><a href="getting-started.html">Getting Started</a></li>
+                        <li><a href="websub.html">WebSub Guide</a></li>
+                        <li><a href="api-docs/">API Reference</a></li>
+                        <li><a href="docs/troubleshooting.html">Troubleshooting</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h5 class="footer-heading">Resources</h5>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com/hosseinhunta/huntfeed/issues">Issue Tracker</a></li>
+                        <li><a href="https://github.com/hosseinhunta/huntfeed/discussions">Discussions</a></li>
+                        <li><a href="https://packagist.org/packages/hosseinhunta/huntfeed">Packagist</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h5 class="footer-heading">About</h5>
+                    <p class="text-muted">HuntFeed is an open-source PHP library created by <a href="https://github.com/hosseinhunta" class="text-reset">Hossein Mohmmadian</a>.</p>
+                    <p class="text-muted">Released under the MIT License.</p>
+                </div>
+            </div>
+            
+            <hr class="my-5">
+            
+            <div class="text-center">
+                <p class="mb-0 text-muted">
+                    &copy; 2025 HuntFeed. Created with <i class="fas fa-heart text-danger mx-1"></i> by 
+                    <a href="https://github.com/hosseinhunta" class="text-reset">Hossein Mohmmadian</a>.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/php.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/languages/xml.min.js"></script>
+    <script>
+        // Initialize syntax highlighting
+        hljs.highlightAll();
+        
+        // Initialize Bootstrap components
+        document.addEventListener('DOMContentLoaded', function() {
+            // Table of contents highlighting
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.toc-nav .nav-link');
+            
+            const highlightNavLink = () => {
+                let scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 150;
+                    const sectionHeight = section.clientHeight;
+                    const sectionId = section.getAttribute('id');
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${sectionId}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            };
+            
+            window.addEventListener('scroll', highlightNavLink);
+            highlightNavLink(); // Initial call
+            
+            // Checklist interactivity
+            const checkboxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const label = this.parentElement;
+                    if (this.checked) {
+                        label.classList.add('text-success');
+                    } else {
+                        label.classList.remove('text-success');
+                    }
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    if (this.getAttribute('href') !== '#') {
+                        e.preventDefault();
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
