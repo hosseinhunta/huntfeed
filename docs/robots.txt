@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://hosseinhunta.github.io/huntfeed/sitemap.xml
+
+# Disallow
+Disallow: /vendor/
+Disallow: /logs/
+Disallow: /tests/
+
+# Crawl delay
+Crawl-delay: 2
