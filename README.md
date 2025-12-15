@@ -1,17 +1,11 @@
-<<<<<<< HEAD
-# 🚀 HuntFeed – Production-Ready PHP Feed Management Library
-=======
 # 🚀 HuntFeed - Production-Ready PHP Feed Management Library
-
-## 🔥 Real-Time RSS/Atom Feed Management with WebSub Support
->>>>>>> 448c5dc116272d3979f76135b58bd2b61055119c
 
 ## 🔥 Real-Time RSS/Atom Feed Management with WebSub Support
 
 [![PHP Version](https://img.shields.io/badge/php-%3E%3D8.1-blue)](https://www.php.net/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![GitHub Stars](https://img.shields.io/github/stars/hosseinhunta/huntfeed)](https://github.com/hosseinhunta/huntfeed)
-<<<<<<< HEAD
+
 [![Packagist Downloads](https://img.shields.io/packagist/dt/hosseinhunta/huntfeed)](https://packagist.org/packages/hosseinhunta/huntfeed)
 [![WebSub Ready](https://img.shields.io/badge/WebSub-Ready-green)](https://www.w3.org/TR/websub/)
 [![Tests Passing](https://img.shields.io/badge/tests-12%2B%20passing-brightgreen)](tests/)
@@ -19,18 +13,12 @@
 ![HuntFeed, event-driven PHP library for consuming, normalizing, and distributing RSS, Atom, and WebSub](/docs/huntfeed-readme.jpg)
 
 **HuntFeed** is a production-ready, event-driven PHP library for consuming, normalizing, and distributing RSS, Atom, and WebSub feed updates with **real-time push notifications**. Perfect for feed aggregators, news readers, and content monitoring applications.
-=======
-[![Downloads](https://img.shields.io/packagist/dt/hosseinhunta/huntfeed)](https://packagist.org/packages/hosseinhunta/huntfeed)
-[![WebSub Ready](https://img.shields.io/badge/WebSub-Ready-green)](https://www.w3.org/TR/websub/)
-
-HuntFeed is a **production-ready, event-driven PHP library** for consuming, normalizing, and distributing RSS, Atom, and WebSub feed updates with **real-time push notifications**. Perfect for feed aggregators, news readers, and content monitoring applications.
->>>>>>> 448c5dc116272d3979f76135b58bd2b61055119c
 
 ---
 
 ## ✨ Why Choose HuntFeed?
 
-<<<<<<< HEAD
+
 ## 📊 Performance Benchmarks
 
 | Scenario | Traditional Polling | HuntFeed with WebSub | Improvement |
@@ -68,7 +56,7 @@ HuntFeed is a **production-ready, event-driven PHP library** for consuming, norm
 - **PSR-12 Compliant Code** – Industry standards
 - **2000+ Lines Documentation** – Complete coverage
 - **Active Maintenance** – Regular updates and security patches
-=======
+
 ### 🚀 **Performance That Scales**
 - **99% fewer HTTP requests** with WebSub vs polling
 - **98% bandwidth reduction** - push notifications only when content changes
@@ -88,12 +76,12 @@ HuntFeed is a **production-ready, event-driven PHP library** for consuming, norm
 - SSL/TLS enforcement
 - Duplicate detection & prevention
 - Multi-format export (JSON, RSS, Atom, CSV, HTML)
->>>>>>> 448c5dc116272d3979f76135b58bd2b61055119c
+
 
 ---
 
 ## 📦 Quick Installation
-<<<<<<< HEAD
+
 
 ## Requirements
 
@@ -103,8 +91,8 @@ HuntFeed is a **production-ready, event-driven PHP library** for consuming, norm
 - **JSON extension** (For JSON handling)
 
 **No external dependencies** for core functionality!
-=======
->>>>>>> 448c5dc116272d3979f76135b58bd2b61055119c
+
+
 
 ```bash
 composer require hosseinhunta/huntfeed
@@ -139,16 +127,16 @@ $rss = $manager->export('rss');   // For feed readers
 
 ---
 
-<<<<<<< HEAD
+
 ## 🔧 Advanced Features
 
 ### 📡 **Multi-Format Feed Support**
 
-=======
+
 ## 🌟 Key Features
 
 ### 📡 **Multi-Format Feed Support**
->>>>>>> 448c5dc116272d3979f76135b58bd2b61055119c
+
 - **RSS 2.0** - Dublin Core, Media RSS, Content Encoded
 - **Atom 1.0** - Full specification support
 - **JSON Feed** - Modern JSON-based format
@@ -156,33 +144,33 @@ $rss = $manager->export('rss');   // For feed readers
 - **GeoRSS** - Geographic-aware feeds
 - **Auto-detection** - Automatically identifies feed format
 
-<<<<<<< HEAD
+
 ### **🔔 WebSub Implementation**
 
-=======
+
 ### 🔔 **Real-Time WebSub (PubSubHubbub)**
->>>>>>> 448c5dc116272d3979f76135b58bd2b61055119c
+
 ```php
 use Hosseinhunta\Huntfeed\WebSub\WebSubManager;
 
 $webSubManager = new WebSubManager(
-<<<<<<< HEAD
+
     $manager,
     'https://your-domain.com/callback.php'
 );
 
-=======
+
     $feedManager,
     'https://your-domain.com/callback.php'
 );
 
 // Auto-subscribe to push notifications
->>>>>>> 448c5dc116272d3979f76135b58bd2b61055119c
+
 $webSubManager->setAutoSubscribe(true);
 $webSubManager->registerFeedWithWebSub('tech', 'https://example.com/feed.xml');
 ```
 
-<<<<<<< HEAD
+
 ### 📊 **Smart Feed Management**
 
 - **Duplicate prevention** - 3 fingerprinting strategies
@@ -276,7 +264,7 @@ php tests/poling-test.php
 $manager->setConfig('https_required', true);
 $manager->setConfig('verify_ssl', true);
 $manager->setConfig('hmac_secret', getenv('WEBSUB_SECRET'));
-=======
+
 **Benefits:**
 - Instant push notifications
 - Zero polling when no updates
@@ -542,14 +530,14 @@ php tests/QuickStartTest.php
 
 # 3. Check the examples
 php examples/WebSubExample.php
->>>>>>> 448c5dc116272d3979f76135b58bd2b61055119c
+
 ```
 
 **Join hundreds of developers** who trust HuntFeed for their feed management needs!
 
 ---
 
-<<<<<<< HEAD
+
 ## 📚 Documentation
 
 ### Getting Started
@@ -627,10 +615,10 @@ php examples/WebSubExample.php
 
 <div align="center">
 
-=======
+
 <div align="center">
 
->>>>>>> 448c5dc116272d3979f76135b58bd2b61055119c
+
 ### ⭐ **Star HuntFeed on GitHub** ⭐
 
 [![GitHub](https://img.shields.io/badge/View_on_GitHub-hosseinhunta/huntfeed-blue?logo=github)](https://github.com/hosseinhunta/huntfeed)
@@ -639,10 +627,10 @@ php examples/WebSubExample.php
 
 </div>
 
-<<<<<<< HEAD
+
 
 ![HuntFeed, event-driven PHP library for consuming, normalizing, and distributing RSS, Atom, and WebSub](/docs/huntfeed-opengraph.png)
 
-=======
->>>>>>> 448c5dc116272d3979f76135b58bd2b61055119c
+
+
 <!-- SEO Keywords: PHP RSS Atom feed parser, WebSub PubSubHubbub real-time updates, PHP feed management library, RSS aggregator PHP, Atom feed reader PHP, real-time notifications PHP, feed parsing library, content aggregation PHP, news reader PHP, feed monitoring, RSS to JSON, PHP 8.1 library, production-ready feed manager, enterprise feed solution, scalable feed aggregator -->
