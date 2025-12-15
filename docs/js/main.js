@@ -130,8 +130,77 @@ echo $manager->export('json');
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
-<script>hljs.highlightAll();</script>
+<!-- FAQ Section (SEO) -->
+<section class="py-5 bg-light" id="faq">
+  <div class="container">
+    <h2 class="mb-4">Frequently Asked Questions</h2>
+
+    <h3>What is HuntFeed?</h3>
+    <p>HuntFeed is an open-source PHP RSS feed library that supports real-time updates using WebSub (PubSubHubbub). It is designed for building RSS aggregators, APIs, bots, and monitoring systems.</p>
+
+    <h3>Does HuntFeed support real-time RSS updates?</h3>
+    <p>Yes. HuntFeed supports WebSub, allowing feeds to push updates instantly instead of relying on inefficient polling.</p>
+
+    <h3>Is HuntFeed a replacement for SimplePie?</h3>
+    <p>HuntFeed goes beyond traditional PHP RSS parsers like SimplePie by offering event-driven architecture, WebSub support, duplicate detection, and multi-format exports.</p>
+
+    <h3>Which feed formats are supported?</h3>
+    <p>HuntFeed supports RSS 2.0, Atom 1.0, JSON Feed, RDF, and GeoRSS formats.</p>
+
+    <h3>Is HuntFeed free to use?</h3>
+    <p>Yes. HuntFeed is completely free and open-source under the MIT license.</p>
+  </div>
+</section>
+
+<!-- FAQ Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is HuntFeed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "HuntFeed is an open-source PHP RSS feed library that provides real-time updates using WebSub (PubSubHubbub)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does HuntFeed support real-time RSS updates?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, HuntFeed supports WebSub which enables instant push-based RSS updates instead of polling."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is HuntFeed a replacement for SimplePie?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "HuntFeed extends beyond SimplePie by supporting WebSub, event-driven processing, duplicate detection, and multi-format exports."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which feed formats does HuntFeed support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "HuntFeed supports RSS 2.0, Atom 1.0, JSON Feed, RDF, and GeoRSS."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is HuntFeed free and open-source?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, HuntFeed is free and open-source software released under the MIT license."
+      }
+    }
+  ]
+}
+</script>
+
 </body>
 </html>
