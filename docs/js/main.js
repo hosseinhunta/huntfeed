@@ -1,206 +1,450 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+/**
+ * HuntFeed - Modern JavaScript Enhancements
+ * Responsive, Accessible, and Performant
+ */
 
-    <title>HuntFeed – PHP RSS Feed Library with Real-Time WebSub Support</title>
-
-    <meta name="description" content="HuntFeed is a fast, open-source PHP RSS feed library with real-time WebSub support. Build RSS aggregators, APIs, and bots with instant updates.">
-    <meta name="keywords" content="PHP RSS feed library, PHP RSS parser, real-time RSS PHP, WebSub PHP library, PubSubHubbub PHP, RSS aggregator PHP">
-    <meta name="author" content="Hossein Mohmmadian">
-    <meta name="robots" content="index, follow">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="HuntFeed – Real-Time PHP RSS Feed Library">
-    <meta property="og:description" content="Open-source PHP RSS & Atom feed library with real-time WebSub (PubSubHubbub) support.">
-    <meta property="og:image" content="https://hosseinhunta.github.io/huntfeed/images/huntfeed-logo.png">
-    <meta property="og:url" content="https://hosseinhunta.github.io/huntfeed/">
-    <meta property="og:type" content="website">
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-
-    <!-- CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "HuntFeed",
-      "description": "Open-source PHP RSS feed library with real-time WebSub support",
-      "applicationCategory": "DeveloperApplication",
-      "operatingSystem": "Any",
-      "softwareVersion": "1.0.0",
-      "url": "https://hosseinhunta.github.io/huntfeed/",
-      "codeRepository": "https://github.com/hosseinhunta/huntfeed",
-      "sameAs": [
-        "https://github.com/hosseinhunta/huntfeed",
-        "https://packagist.org/packages/hosseinhunta/huntfeed"
-      ],
-      "author": {
-        "@type": "Person",
-        "name": "Hossein Mohmmadian"
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
+(() => {
+    'use strict';
+    
+    // Configuration
+    const CONFIG = {
+        debounceDelay: 100,
+        scrollThreshold: 100,
+        animationDuration: 300
+    };
+    
+    // State Management
+    const state = {
+        activeTab: 'telegram',
+        activeFaq: null,
+        scrolled: false,
+        prefersReducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    };
+    
+    // DOM Elements Cache
+    const elements = {
+        navbar: document.querySelector('.navbar'),
+        tabButtons: document.querySelectorAll('.tab-button'),
+        tabPanes: document.querySelectorAll('.tab-pane'),
+        faqQuestions: document.querySelectorAll('.faq-question'),
+        faqAnswers: document.querySelectorAll('.faq-answer'),
+        codeTabs: document.querySelectorAll('.code-tab'),
+        codeBlocks: document.querySelectorAll('.code-block'),
+        chartFills: document.querySelectorAll('.chart-fill'),
+        lazyImages: document.querySelectorAll('img[data-src]')
+    };
+    
+    // Initialize Application
+    function init() {
+        console.log('🚀 HuntFeed initialized');
+        
+        setupEventListeners();
+        setupIntersectionObservers();
+        setupPerformanceCharts();
+        handleScroll();
+        initTabs();
+        initFAQ();
+        initLazyLoading();
+        
+        // Add loading class for initial animations
+        document.documentElement.classList.add('loaded');
     }
-    </script>
-</head>
-<body>
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-  <div class="container">
-    <a class="navbar-brand" href="#">HuntFeed</a>
-    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
-    <div class="collapse navbar-collapse" id="nav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
-        <li class="nav-item"><a class="nav-link" href="#installation">Installation</a></li>
-        <li class="nav-item"><a class="nav-link" href="#examples">Examples</a></li>
-        <li class="nav-item"><a class="nav-link" href="https://github.com/hosseinhunta/huntfeed" target="_blank">GitHub</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<section class="hero-section">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-lg-6">
-        <h1>HuntFeed – Real-Time PHP RSS Feed Library</h1>
-        <h2 class="h5 mt-3 text-light">Open-source PHP library for RSS, Atom & JSON Feed with WebSub (PubSubHubbub)</h2>
-        <p class="lead mt-4">Build high-performance RSS aggregators, APIs, and bots using real-time feed updates instead of inefficient polling.</p>
-        <a href="#installation" class="btn btn-primary btn-lg me-2">Get Started</a>
-        <a href="https://github.com/hosseinhunta/huntfeed" class="btn btn-outline-light btn-lg" target="_blank">GitHub</a>
-      </div>
-      <div class="col-lg-6">
-        <pre><code class="language-php">&lt;?php
-use Hosseinhunta\Huntfeed\Hub\FeedManager;
-
-$manager = new FeedManager();
-$manager->registerFeed('tech','https://news.ycombinator.com/rss');
-
-$manager->on('item:new', fn($d) => notify($d['item']));
-
-echo $manager->export('json');
-?&gt;</code></pre>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="py-5 bg-white">
-  <div class="container">
-    <h2>PHP RSS Feed Library for Real-Time Applications</h2>
-    <p>HuntFeed is a modern <strong>PHP RSS feed library</strong> designed for developers who need instant updates, scalability, and clean architecture. Unlike traditional PHP RSS parsers, HuntFeed uses <strong>WebSub</strong> for real-time push notifications.</p>
-    <p>Use HuntFeed to build news aggregators, Telegram bots, REST APIs, monitoring tools, and content platforms.</p>
-  </div>
-</section>
-
-<section id="features" class="py-5 bg-light">
-  <div class="container">
-    <h2 class="text-center mb-5">Why HuntFeed?</h2>
-    <div class="row g-4">
-      <div class="col-md-4"><div class="feature-card"><h3>Real-Time RSS</h3><p>WebSub support for instant updates without polling.</p></div></div>
-      <div class="col-md-4"><div class="feature-card"><h3>Multi-Format</h3><p>RSS, Atom, JSON Feed, RDF, GeoRSS.</p></div></div>
-      <div class="col-md-4"><div class="feature-card"><h3>Production Ready</h3><p>Secure, scalable, and event-driven.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<section id="installation" class="py-5">
-  <div class="container">
-    <h2 class="text-center mb-4">Installation</h2>
-    <pre><code class="language-bash">composer require hosseinhunta/huntfeed</code></pre>
-  </div>
-</section>
-
-<footer class="bg-dark text-white py-4">
-  <div class="container text-center">
-    <p>© 2024 HuntFeed – Open-source PHP RSS Feed Library</p>
-  </div>
-</footer>
-
-<!-- FAQ Section (SEO) -->
-<section class="py-5 bg-light" id="faq">
-  <div class="container">
-    <h2 class="mb-4">Frequently Asked Questions</h2>
-
-    <h3>What is HuntFeed?</h3>
-    <p>HuntFeed is an open-source PHP RSS feed library that supports real-time updates using WebSub (PubSubHubbub). It is designed for building RSS aggregators, APIs, bots, and monitoring systems.</p>
-
-    <h3>Does HuntFeed support real-time RSS updates?</h3>
-    <p>Yes. HuntFeed supports WebSub, allowing feeds to push updates instantly instead of relying on inefficient polling.</p>
-
-    <h3>Is HuntFeed a replacement for SimplePie?</h3>
-    <p>HuntFeed goes beyond traditional PHP RSS parsers like SimplePie by offering event-driven architecture, WebSub support, duplicate detection, and multi-format exports.</p>
-
-    <h3>Which feed formats are supported?</h3>
-    <p>HuntFeed supports RSS 2.0, Atom 1.0, JSON Feed, RDF, and GeoRSS formats.</p>
-
-    <h3>Is HuntFeed free to use?</h3>
-    <p>Yes. HuntFeed is completely free and open-source under the MIT license.</p>
-  </div>
-</section>
-
-<!-- FAQ Schema -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What is HuntFeed?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "HuntFeed is an open-source PHP RSS feed library that provides real-time updates using WebSub (PubSubHubbub)."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does HuntFeed support real-time RSS updates?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, HuntFeed supports WebSub which enables instant push-based RSS updates instead of polling."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is HuntFeed a replacement for SimplePie?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "HuntFeed extends beyond SimplePie by supporting WebSub, event-driven processing, duplicate detection, and multi-format exports."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Which feed formats does HuntFeed support?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "HuntFeed supports RSS 2.0, Atom 1.0, JSON Feed, RDF, and GeoRSS."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is HuntFeed free and open-source?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, HuntFeed is free and open-source software released under the MIT license."
-      }
+    
+    // Event Listeners Setup
+    function setupEventListeners() {
+        // Window Events
+        window.addEventListener('scroll', debounce(handleScroll, CONFIG.debounceDelay));
+        window.addEventListener('resize', debounce(handleResize, CONFIG.debounceDelay));
+        window.addEventListener('load', handleLoad);
+        
+        // Keyboard Navigation
+        document.addEventListener('keydown', handleKeyNavigation);
+        
+        // Tab Accessibility
+        elements.tabButtons.forEach(button => {
+            button.addEventListener('keydown', handleTabKeyNavigation);
+        });
     }
-  ]
-}
-</script>
-
-</body>
-</html>
+    
+    // Scroll Handler
+    function handleScroll() {
+        const scrollY = window.scrollY;
+        state.scrolled = scrollY > CONFIG.scrollThreshold;
+        
+        // Update navbar
+        elements.navbar?.classList.toggle('scrolled', state.scrolled);
+        
+        // Update active section in navigation
+        updateActiveNavLink();
+    }
+    
+    // Resize Handler
+    function handleResize() {
+        console.log('📱 Window resized:', window.innerWidth);
+    }
+    
+    // Load Handler
+    function handleLoad() {
+        console.log('✅ Page fully loaded');
+        
+        // Animate performance charts
+        animateCharts();
+        
+        // Remove loading states
+        document.documentElement.classList.remove('loading');
+    }
+    
+    // Tab Navigation
+    function initTabs() {
+        elements.tabButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const tabId = button.dataset.tab;
+                switchTab(tabId);
+                
+                // Update URL hash without scrolling
+                history.replaceState(null, null, `#${tabId}`);
+            });
+        });
+        
+        // Check URL hash for initial tab
+        const hash = window.location.hash.substring(1);
+        if (hash && document.querySelector(`#${hash}`)) {
+            switchTab(hash);
+        }
+    }
+    
+    function switchTab(tabId) {
+        // Update buttons
+        elements.tabButtons.forEach(button => {
+            const isActive = button.dataset.tab === tabId;
+            button.classList.toggle('active', isActive);
+            button.setAttribute('aria-selected', isActive);
+            
+            if (isActive) {
+                button.focus();
+            }
+        });
+        
+        // Update panes
+        elements.tabPanes.forEach(pane => {
+            const isActive = pane.id === tabId;
+            pane.classList.toggle('active', isActive);
+            pane.setAttribute('aria-hidden', !isActive);
+        });
+        
+        // Update code blocks if available
+        const codeBlock = document.querySelector(`.code-block[data-tab="${tabId}"]`);
+        if (codeBlock) {
+            switchCodeTab(tabId);
+        }
+        
+        state.activeTab = tabId;
+    }
+    
+    // Code Tabs
+    function initCodeTabs() {
+        elements.codeTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const language = tab.dataset.lang;
+                switchCodeTab(language);
+            });
+        });
+    }
+    
+    function switchCodeTab(language) {
+        elements.codeTabs.forEach(tab => {
+            tab.classList.toggle('active', tab.dataset.lang === language);
+        });
+        
+        elements.codeBlocks.forEach(block => {
+            block.classList.toggle('active', block.dataset.lang === language);
+        });
+    }
+    
+    // FAQ Accordion
+    function initFAQ() {
+        elements.faqQuestions.forEach((question, index) => {
+            question.addEventListener('click', () => {
+                toggleFAQ(index);
+            });
+            
+            question.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleFAQ(index);
+                }
+            });
+        });
+    }
+    
+    function toggleFAQ(index) {
+        const answer = elements.faqAnswers[index];
+        const isOpening = state.activeFaq !== index;
+        
+        // Close current FAQ if opening a different one
+        if (state.activeFaq !== null && state.activeFaq !== index) {
+            closeFAQ(state.activeFaq);
+        }
+        
+        if (isOpening) {
+            openFAQ(index);
+            state.activeFaq = index;
+        } else {
+            closeFAQ(index);
+            state.activeFaq = null;
+        }
+    }
+    
+    function openFAQ(index) {
+        const question = elements.faqQuestions[index];
+        const answer = elements.faqAnswers[index];
+        
+        question.classList.add('active');
+        answer.classList.add('active');
+        question.setAttribute('aria-expanded', 'true');
+        
+        // Animate height if reduced motion is not preferred
+        if (!state.prefersReducedMotion) {
+            answer.style.maxHeight = answer.scrollHeight + 10 + 'px';
+        }
+    }
+    
+    function closeFAQ(index) {
+        const question = elements.faqQuestions[index];
+        const answer = elements.faqAnswers[index];
+        
+        question.classList.remove('active');
+        answer.classList.remove('active');
+        question.setAttribute('aria-expanded', 'false');
+        
+        if (!state.prefersReducedMotion) {
+            answer.style.maxHeight = null;
+        }
+    }
+    
+    // Performance Charts Animation
+    function setupPerformanceCharts() {
+        // Set initial widths from data attributes
+        elements.chartFills.forEach(chart => {
+            const value = chart.dataset.value;
+            chart.style.width = '0%';
+            
+            // Store final value for animation
+            chart.dataset.finalValue = value;
+        });
+    }
+    
+    function animateCharts() {
+        if (state.prefersReducedMotion) {
+            // Skip animation for reduced motion preference
+            elements.chartFills.forEach(chart => {
+                chart.style.width = chart.dataset.finalValue;
+            });
+            return;
+        }
+        
+        // Animate each chart with delay
+        elements.chartFills.forEach((chart, index) => {
+            setTimeout(() => {
+                chart.style.width = chart.dataset.finalValue;
+            }, index * 200);
+        });
+    }
+    
+    // Lazy Loading Images
+    function initLazyLoading() {
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+            
+            elements.lazyImages.forEach(img => imageObserver.observe(img));
+        } else {
+            // Fallback for browsers without IntersectionObserver
+            elements.lazyImages.forEach(img => {
+                img.src = img.dataset.src;
+            });
+        }
+    }
+    
+    // Intersection Observers Setup
+    function setupIntersectionObservers() {
+        // Animate elements on scroll
+        const animateOnScroll = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+        
+        const scrollObserver = new IntersectionObserver(animateOnScroll, {
+            threshold: 0.1,
+            rootMargin: '50px'
+        });
+        
+        // Observe elements to animate
+        document.querySelectorAll('.feature-card, .api-card, .benefit-item').forEach(el => {
+            scrollObserver.observe(el);
+        });
+    }
+    
+    // Update Active Navigation Link
+    function updateActiveNavLink() {
+        const sections = document.querySelectorAll('section[id]');
+        const scrollPosition = window.scrollY + 100;
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            const sectionId = section.getAttribute('id');
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${sectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    }
+    
+    // Keyboard Navigation
+    function handleKeyNavigation(e) {
+        // Escape key closes modals/dropdowns
+        if (e.key === 'Escape') {
+            closeAllDropdowns();
+        }
+        
+        // Tab key handling for focus management
+        if (e.key === 'Tab') {
+            document.documentElement.classList.add('user-is-tabbing');
+        }
+    }
+    
+    function handleTabKeyNavigation(e) {
+        const tabs = Array.from(elements.tabButtons);
+        const currentIndex = tabs.indexOf(e.target);
+        
+        let nextIndex;
+        
+        switch (e.key) {
+            case 'ArrowLeft':
+            case 'ArrowUp':
+                e.preventDefault();
+                nextIndex = currentIndex > 0 ? currentIndex - 1 : tabs.length - 1;
+                tabs[nextIndex].focus();
+                tabs[nextIndex].click();
+                break;
+                
+            case 'ArrowRight':
+            case 'ArrowDown':
+                e.preventDefault();
+                nextIndex = currentIndex < tabs.length - 1 ? currentIndex + 1 : 0;
+                tabs[nextIndex].focus();
+                tabs[nextIndex].click();
+                break;
+                
+            case 'Home':
+                e.preventDefault();
+                tabs[0].focus();
+                tabs[0].click();
+                break;
+                
+            case 'End':
+                e.preventDefault();
+                tabs[tabs.length - 1].focus();
+                tabs[tabs.length - 1].click();
+                break;
+        }
+    }
+    
+    // Utility Functions
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+    
+    function throttle(func, limit) {
+        let inThrottle;
+        return function() {
+            const args = arguments;
+            const context = this;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        };
+    }
+    
+    function closeAllDropdowns() {
+        // Close any open dropdowns, modals, or menus
+        document.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+            menu.classList.remove('show');
+        });
+    }
+    
+    // Error Handling
+    function handleError(error, context = '') {
+        console.error(`❌ Error in ${context}:`, error);
+        
+        // Show user-friendly error message
+        const errorElement = document.getElementById('error-message');
+        if (errorElement) {
+            errorElement.textContent = 'An error occurred. Please try again.';
+            errorElement.style.display = 'block';
+            
+            setTimeout(() => {
+                errorElement.style.display = 'none';
+            }, 5000);
+        }
+    }
+    
+    // Performance Monitoring
+    function measurePerformance(markName) {
+        if ('performance' in window && 'mark' in performance) {
+            performance.mark(markName);
+        }
+    }
+    
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+    
+    // Expose public API for debugging
+    window.HuntFeed = {
+        state,
+        elements,
+        switchTab,
+        toggleFAQ,
+        animateCharts,
+        measurePerformance
+    };
+    
+    // Error boundary for the module
+    try {
+        // Additional initialization can go here
+    } catch (error) {
+        handleError(error, 'module initialization');
+    }
+})();

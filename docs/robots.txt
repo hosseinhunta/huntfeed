@@ -1,13 +1,17 @@
+# HuntFeed Robots Configuration
 User-agent: *
 Allow: /
 
-# Sitemap
+# Sitemap Location
 Sitemap: https://hosseinhunta.github.io/huntfeed/sitemap.xml
 
-# Disallow
+# Disallowed Directories
 Disallow: /vendor/
+Disallow: /node_modules/
 Disallow: /logs/
 Disallow: /tests/
+Disallow: /cache/
+Disallow: /tmp/
 
-# Crawl delay
-Crawl-delay: 2
+# Crawl Rate Limiting
+Crawl-delay: 1
