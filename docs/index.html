@@ -212,7 +212,7 @@ php artisan huntfeed:listen</code></pre>
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="py-5" aria-label="Key features">
+    <section id="features" class="py-5 section-padding" aria-label="Key features">
         <div class="container">
             <div class="text-center mb-5">
                 <h2 class="h2">Why HuntFeed?</h2>
@@ -413,7 +413,7 @@ echo $manager->export('json');</code></pre>
                             <div class="code-body">
                                 <pre><code class="language-php"><?php
 // Telegram Bot Integration
-$manager->on('item:new', function($data) {
+    $manager->on('item:new', function($data) {
     $item = $data['item'];
     
     $message = "📰 *New Article Alert!*\n\n";
